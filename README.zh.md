@@ -45,7 +45,7 @@
 ## 安装
 
 ```powershell
-git clone https://github.com/hoebeed/dsh-plugin-session-cost
+git clone https://github.com/jxh020496-cmd/dsh-plugin-session-cost
 cd dsh-plugin-session-cost
 powershell -NoProfile -ExecutionPolicy Bypass -File .\install.ps1
 ```
@@ -112,4 +112,4 @@ node .\check-host.mjs "<profile>\plugins\session-cost\host.js"   # 33 项：测�
 
 ## License
 
-MIT © 2026 hoebeed
+MIT © 2026 jxh020496-cmd
