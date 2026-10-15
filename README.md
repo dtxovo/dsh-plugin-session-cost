@@ -47,7 +47,7 @@ resuming a session do not change it, and a retried model request is not billed t
 ## Install
 
 ```powershell
-git clone https://github.com/jxh020496-cmd/dsh-plugin-session-cost
+git clone https://github.com/dtxovo/dsh-plugin-session-cost
 cd dsh-plugin-session-cost
 powershell -NoProfile -ExecutionPolicy Bypass -File .\install.ps1
 ```
@@ -133,4 +133,4 @@ so instead of failing silently.
 
 ## License
 
-MIT © 2026 jxh020496-cmd
+MIT © 2026 dtxovo

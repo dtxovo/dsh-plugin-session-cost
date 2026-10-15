@@ -4,7 +4,7 @@
   "private": true,
   "description": "DeepSeek Harness plugin: shows the current session's spend, priced by peak and off-peak tier.",
   "license": "MIT",
-  "author": "jxh020496-cmd",
+  "author": "dtxovo",
   "type": "module",
   "main": "host.js",
   "exports": {
