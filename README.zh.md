@@ -2,7 +2,7 @@
 
 一个 [DeepSeek Harness](https://github.com/deepseek-ai/deepseek-harness)（DSH）插件：显示**当前会话已经花了多少钱**，并按 DeepSeek 的**峰谷时段**分别计价。
 
-![输入框下方的花费胶囊与展开面板](docs/screenshot.png)
+![花费胶囊与展开面板](docs/screenshot.png)
 
 [English](README.md) | **中文**
 

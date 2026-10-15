@@ -3,7 +3,7 @@
 A [DeepSeek Harness](https://github.com/deepseek-ai/deepseek-harness) plugin that shows what the current
 session has cost so far, split by DeepSeek's peak and off-peak rate windows.
 
-![The cost pill and its breakdown panel under the composer](docs/screenshot.png)
+![The cost pill and its breakdown panel](docs/screenshot.png)
 
 **English** | [中文](README.zh.md)
 
