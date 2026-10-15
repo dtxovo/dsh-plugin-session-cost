@@ -1,0 +1,43 @@
+{
+  "name": "dsh-plugin-session-cost",
+  "version": "0.1.0",
+  "private": true,
+  "description": "DeepSeek Harness plugin: shows the current session's spend, priced by peak and off-peak tier.",
+  "license": "MIT",
+  "author": "hoebeed",
+  "type": "module",
+  "main": "host.js",
+  "exports": {
+    ".": "./host.js",
+    "./client": "./client.js",
+    "./package.json": "./package.json"
+  },
+  "files": [
+    "host.js",
+    "client.js",
+    "install.ps1",
+    "README.md",
+    "LICENSE"
+  ],
+  "keywords": [
+    "deepseek-harness",
+    "dsh",
+    "dsh-plugin",
+    "cordis",
+    "cost",
+    "tokens",
+    "pricing"
+  ],
+  "scripts": {
+    "check": "node check-host.mjs && node check.mjs"
+  },
+  "dsh": {
+    "client": {
+      "platform": "web",
+      "inject": [
+        "@deepseek-ai/dsh-client-ui-conversation",
+        "@deepseek-ai/dsh-client-locale"
+      ]
+    }
+  }
+}
