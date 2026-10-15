@@ -17,7 +17,9 @@
     "client.js",
     "install.ps1",
     "README.md",
-    "LICENSE"
+    "README.zh.md",
+    "LICENSE",
+    "docs/"
   ],
   "keywords": [
     "deepseek-harness",

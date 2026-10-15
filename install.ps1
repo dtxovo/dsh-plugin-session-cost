@@ -34,7 +34,7 @@ if (-not (Test-Path -LiteralPath $patchFile)) {
 }
 
 New-Item -ItemType Directory -Force -Path $target | Out-Null
-foreach ($file in 'package.json', 'host.js', 'client.js', 'README.md') {
+foreach ($file in 'package.json', 'host.js', 'client.js', 'README.md', 'README.zh.md') {
     $from = Join-Path $source $file
     if (Test-Path -LiteralPath $from) {
         Copy-Item -LiteralPath $from -Destination (Join-Path $target $file) -Force
