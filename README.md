@@ -131,6 +131,20 @@ from its own location — both are supplied by DeepSeek Harness. Point it at an 
 (the normal case), or install those two packages first. Run it with no argument and it says
 so instead of failing silently.
 
+## Releasing
+
+Publishing happens in CI, never from a laptop: [`.github/workflows/publish.yml`](.github/workflows/publish.yml)
+publishes on a `v*` tag through npm **Trusted Publishing** (OIDC), so this repository holds no
+`NPM_TOKEN` and no long-lived write credential — nothing to leak and nothing to rotate.
+Provenance attestations are attached automatically for a public package in a public repository.
+
+1. Bump `version` in `package.json` and commit.
+2. `git tag v0.1.0 && git push origin v0.1.0`.
+
+The tag-driven run needs a Trusted Publisher configured once on npmjs.com: the package's
+Settings → Trusted Publisher → GitHub Actions, with user `dtxovo`, repository
+`dsh-plugin-session-spend`, and workflow `publish.yml`.
+
 ## License
 
 MIT © 2026 dtxovo

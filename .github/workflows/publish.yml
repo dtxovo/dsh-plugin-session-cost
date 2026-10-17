@@ -1,0 +1,43 @@
+name: Publish
+
+# Publishing runs from CI only, authenticated by npm Trusted Publishing (OIDC).
+# There is no NPM_TOKEN in this repository and none is needed: the `id-token:
+# write` permission below is what lets the npm CLI exchange a short-lived OIDC
+# token for publish rights. Provenance attestations are generated automatically
+# for a public package in a public repository.
+#
+# Setup, once, on npmjs.com: the package's Settings -> Trusted Publisher ->
+# GitHub Actions, with user `dtxovo`, repository `dsh-plugin-session-spend`, and
+# this file's name, `publish.yml`.
+
+on:
+  push:
+    tags:
+      - 'v*'
+  workflow_dispatch:
+
+permissions:
+  id-token: write # required for OIDC trusted publishing
+  contents: read
+
+jobs:
+  publish:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '24'
+          registry-url: 'https://registry.npmjs.org'
+          # No dependency cache: a release build should not reuse stale inputs.
+
+      # The package has no dependencies to install: the checks below run on
+      # Node alone. `npm publish` re-runs them through prepublishOnly, so a
+      # broken client bundle cannot reach the registry even if this step is
+      # dropped later.
+      - name: Check the client half
+        run: npm run check
+
+      - name: Publish
+        run: npm publish

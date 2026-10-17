@@ -110,6 +110,15 @@ node .\check-host.mjs "<profile>\plugins\session-cost\host.js"   # 33 项：测�
 
 `check-host.mjs` 要 import host 半边，而后者从自己所在位置解析 `@deepseek-ai/schemastery` 和 `zod` —— 这两个由 DeepSeek Harness 提供。所以指向一份已安装的副本跑（通常是这种情况），或者先把这两个依赖装上。不带参数直接跑时它会明确告诉你该怎么做，而不是静默失败。
 
+## 发布
+
+发布走 CI，不从本机推：[`.github/workflows/publish.yml`](.github/workflows/publish.yml) 在 `v*` 标签上通过 npm **Trusted Publishing**（OIDC）发布。所以这个仓库里**没有 `NPM_TOKEN`**、没有长期写入凭据 —— 没有东西会泄漏，也没有东西需要轮换。公开包 + 公开仓库会自动附带 provenance 证明。
+
+1. 改 `package.json` 里的 `version` 并提交。
+2. `git tag v0.1.0 && git push origin v0.1.0`。
+
+按标签触发前，需要在 npmjs.com 配置一次 Trusted Publisher：包的 Settings → Trusted Publisher → GitHub Actions，填用户 `dtxovo`、仓库 `dsh-plugin-session-spend`、workflow `publish.yml`。
+
 ## License
 
 MIT © 2026 dtxovo
