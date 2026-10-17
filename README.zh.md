@@ -1,4 +1,4 @@
-# dsh-plugin-session-cost
+# dsh-plugin-session-spend
 
 一个 [DeepSeek Harness](https://github.com/deepseek-ai/deepseek-harness)（DSH）插件：显示**当前会话已经花了多少钱**，并按 DeepSeek 的**峰谷时段**分别计价。
 
@@ -45,8 +45,8 @@
 ## 安装
 
 ```powershell
-git clone https://github.com/dtxovo/dsh-plugin-session-cost
-cd dsh-plugin-session-cost
+git clone https://github.com/dtxovo/dsh-plugin-session-spend
+cd dsh-plugin-session-spend
 powershell -NoProfile -ExecutionPolicy Bypass -File .\install.ps1
 ```
 
@@ -102,7 +102,7 @@ profile 目录按这个顺序确定：`-ProfileDir` 参数 → `$env:DSH_PROFILE
 ## 开发
 
 ```powershell
-node .\check.mjs         # 43 项：测试客户端半边，默认测 ./client.js
+node .\check.mjs         # 44 项：测试客户端半边，默认测 ./client.js
 node .\check-host.mjs "<profile>\plugins\session-cost\host.js"   # 33 项：测试 host 半边
 ```
 

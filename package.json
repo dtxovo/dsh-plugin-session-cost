@@ -34,12 +34,12 @@
   ],
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/dtxovo/dsh-plugin-session-cost.git"
+    "url": "git+https://github.com/dtxovo/dsh-plugin-session-spend.git"
   },
   "bugs": {
-    "url": "https://github.com/dtxovo/dsh-plugin-session-cost/issues"
+    "url": "https://github.com/dtxovo/dsh-plugin-session-spend/issues"
   },
-  "homepage": "https://github.com/dtxovo/dsh-plugin-session-cost#readme",
+  "homepage": "https://github.com/dtxovo/dsh-plugin-session-spend#readme",
   "publishConfig": {
     "access": "public",
     "registry": "https://registry.npmjs.org/"

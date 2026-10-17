@@ -7,10 +7,17 @@
 // createPortal. Effects never run, which also proves the panel stays hidden
 // until it has been measured rather than flashing at an unpositioned origin.
 import { readFileSync } from 'node:fs'
+import { dirname, join } from 'node:path'
 import { fileURLToPath } from 'node:url'
 
 /** Bundle under test: an explicit path, or this package's own client half. */
 const BUNDLE = process.argv[2] ?? fileURLToPath(new URL('./client.js', import.meta.url))
+/**
+ * The manifest beside the bundle. `dsh-client-modules` rejects a bundle whose
+ * registered id differs from the package name, so the two are asserted equal
+ * rather than hardcoded: renaming the package once produced a mismatch.
+ */
+const MANIFEST = JSON.parse(readFileSync(join(dirname(BUNDLE), 'package.json'), 'utf8'))
 
 /** React prop name -> DOM attribute, for the few that differ. */
 const ATTRIBUTE = { className: 'class', htmlFor: 'for' }
@@ -195,6 +202,7 @@ const checks = [
   ['missing locale seat does not leak raw keys', !noSeat.includes('cost.label') && !noSeatExpanded.includes('tier.')],
   ['absent projection renders nothing', inert === ''],
   ['requires only platform-seeded modules', [...required].sort().join(',') === 'react,react-dom'],
+  ['the bundle id equals the package name', captured.id === MANIFEST.name],
 
   ['trigger mirrors the sibling usage pill, not the taller one', ['"borderRadius":"24px"', '"padding":"1px 8px"', '"gap":"6px"', '"fontSize":"12px"', '"lineHeight":"18px"', '"display":"inline-flex"'].every(d => collapsed.includes(d))],
   ['the trigger sets no fixed height', !collapsed.includes('"height":"2')],

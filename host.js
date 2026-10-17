@@ -21,7 +21,7 @@
  * config edit. Because prices are applied in the *view* and never stored in the
  * fold state, changing a rate cannot invalidate a persisted checkpoint.
  *
- * @module dsh-plugin-session-cost
+ * @module dsh-plugin-session-spend
  */
 import z from '@deepseek-ai/schemastery'
 import { z as zod } from 'zod'

@@ -1,4 +1,4 @@
-# dsh-plugin-session-cost
+# dsh-plugin-session-spend
 
 A [DeepSeek Harness](https://github.com/deepseek-ai/deepseek-harness) plugin that shows what the current
 session has cost so far, split by DeepSeek's peak and off-peak rate windows.
@@ -47,8 +47,8 @@ resuming a session do not change it, and a retried model request is not billed t
 ## Install
 
 ```powershell
-git clone https://github.com/dtxovo/dsh-plugin-session-cost
-cd dsh-plugin-session-cost
+git clone https://github.com/dtxovo/dsh-plugin-session-spend
+cd dsh-plugin-session-spend
 powershell -NoProfile -ExecutionPolicy Bypass -File .\install.ps1
 ```
 
@@ -119,7 +119,7 @@ The design behind the numbers, and the DSH internals this plugin had to work aro
 ## Development
 
 ```powershell
-node .\check.mjs         # 43 assertions on the client half, against ./client.js
+node .\check.mjs         # 44 assertions on the client half, against ./client.js
 node .\check-host.mjs "<profile>\plugins\session-cost\host.js"   # 33 assertions on the host half
 ```
 

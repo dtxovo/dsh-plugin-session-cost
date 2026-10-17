@@ -1,5 +1,5 @@
 window.__ModuleLoader__.load({
-	id: "dsh-plugin-session-cost",
+	id: "dsh-plugin-session-spend",
 	factory: (require) => {
 		var module = { exports: {} };
 		var exports = module.exports;
