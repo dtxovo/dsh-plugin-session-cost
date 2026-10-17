@@ -32,6 +32,13 @@ jobs:
           registry-url: 'https://registry.npmjs.org'
           # No dependency cache: a release build should not reuse stale inputs.
 
+      # Trusted publishing needs npm >= 11.5.1. Printing both makes a version
+      # mismatch obvious in the log instead of surfacing as a bare ENEEDAUTH.
+      - name: Report the toolchain
+        run: |
+          node -v
+          npm -v
+
       # The package has no dependencies to install: the checks below run on
       # Node alone. `npm publish` re-runs them through prepublishOnly, so a
       # broken client bundle cannot reach the registry even if this step is
