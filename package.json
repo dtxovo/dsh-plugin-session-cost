@@ -1,8 +1,7 @@
 {
   "name": "dsh-plugin-session-cost",
   "version": "0.1.0",
-  "private": true,
-  "description": "DeepSeek Harness plugin: shows the current session's spend, priced by peak and off-peak tier.",
+  "description": "DeepSeek Harness plugin: shows the current session's spend, priced by DeepSeek's peak and off-peak rate windows.",
   "license": "MIT",
   "author": "dtxovo",
   "type": "module",
@@ -15,6 +14,8 @@
   "files": [
     "host.js",
     "client.js",
+    "check.mjs",
+    "check-host.mjs",
     "install.ps1",
     "README.md",
     "README.zh.md",
@@ -28,10 +29,28 @@
     "cordis",
     "cost",
     "tokens",
-    "pricing"
+    "pricing",
+    "billing"
   ],
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/dtxovo/dsh-plugin-session-cost.git"
+  },
+  "bugs": {
+    "url": "https://github.com/dtxovo/dsh-plugin-session-cost/issues"
+  },
+  "homepage": "https://github.com/dtxovo/dsh-plugin-session-cost#readme",
+  "publishConfig": {
+    "access": "public",
+    "registry": "https://registry.npmjs.org/"
+  },
+  "engines": {
+    "node": ">=18"
+  },
   "scripts": {
-    "check": "node check-host.mjs && node check.mjs"
+    "check": "node check.mjs",
+    "check:host": "node check-host.mjs",
+    "prepublishOnly": "node check.mjs"
   },
   "dsh": {
     "client": {
