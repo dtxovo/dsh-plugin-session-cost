@@ -1,5 +1,5 @@
 {
-  "name": "dsh-plugin-session-cost",
+  "name": "dsh-plugin-session-spend",
   "version": "0.1.0",
   "description": "DeepSeek Harness plugin: shows the current session's spend, priced by DeepSeek's peak and off-peak rate windows.",
   "license": "MIT",
