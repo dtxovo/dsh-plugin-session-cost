@@ -33,6 +33,16 @@ if (-not (Test-Path -LiteralPath $patchFile)) {
     throw "not a DSH profile directory: $ProfileDir (no cordis.patch.yml)"
 }
 
+# The client bundle registers under the package name, and DSH caches a plugin's
+# resolved package name until it restarts. Overwriting an older install whose
+# name differs therefore pairs the old cached name with the new bundle, which
+# fails to load. Detect that case instead of letting it happen silently.
+$previousName = $null
+$previousManifest = Join-Path $target 'package.json'
+if (Test-Path -LiteralPath $previousManifest) {
+    try { $previousName = (Get-Content -LiteralPath $previousManifest -Raw | ConvertFrom-Json).name } catch { }
+}
+
 New-Item -ItemType Directory -Force -Path $target | Out-Null
 foreach ($file in 'package.json', 'host.js', 'client.js', 'README.md', 'README.zh.md') {
     $from = Join-Path $source $file
@@ -43,6 +53,14 @@ foreach ($file in 'package.json', 'host.js', 'client.js', 'README.md', 'README.z
 # The host half used to be index.js; a stale copy would shadow nothing but is confusing.
 Remove-Item -LiteralPath (Join-Path $target 'index.js') -Force -ErrorAction SilentlyContinue
 Write-Host "copied package  -> $target"
+
+$newName = (Get-Content -LiteralPath (Join-Path $target 'package.json') -Raw | ConvertFrom-Json).name
+if ($previousName -and $previousName -ne $newName) {
+    Write-Warning "package name changed: $previousName -> $newName"
+    Write-Host '  DSH caches a plugin package name until it restarts, and the client bundle'
+    Write-Host '  registers under the new name. Restart DSH and run this script again, or the'
+    Write-Host '  browser half will fail to load even though the files on disk are correct.'
+}
 
 $patch = [System.IO.File]::ReadAllText($patchFile)
 if ($patch -match '(?m)^\s*(?:-\s*)?id:\s*session-cost(?:-v\d+)?\s*$') {

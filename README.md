@@ -63,6 +63,15 @@ The profile directory is resolved in this order: the `-ProfileDir` argument, the
 default. On a machine whose execution policy already allows local scripts, `.\install.ps1`
 works as-is. On macOS or Linux, do the same two steps by hand under PowerShell 7.
 
+### Upgrading an existing install
+
+Re-running `install.ps1` overwrites the files in place, which is enough for a normal version
+bump. **A release that renames the package is the exception**: DSH caches a plugin's resolved
+package name at load time, while the client bundle registers under the new one, so the browser
+half fails to load even though every file on disk is correct. The script detects that case and
+warns — restart DSH, then run it again. Reloading the page is not enough, because the stale
+name lives in the host process.
+
 ## Configure
 
 Edit the profile's `cordis.patch.yml` and save — the patch layer is watched, so no restart
